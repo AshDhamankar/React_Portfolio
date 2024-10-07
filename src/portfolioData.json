@@ -1,0 +1,153 @@
+{
+    "personalInfo": {
+      "name": "Ilyass TARHRI",
+      "titles": ["Full Stack Web Developer", "Cloud and DevOps Enthusiast", "UI/UX Designer"],
+      "description": "Hello 👋🏼, I am Ilyass, Full-Stack Web Developer, based in Morocco, I am passionate about Web Development, DevOps and Cloud. I focus on modern, responsive website solutions that are easy to use by the end user. If you have an opportunity, feel free to contact me.",
+      "cvLink": "https://drive.google.com/file/d/1t0OMlmOlYm_aJHREWc-71SO2KZp2Fu_9/view?usp=sharing",
+      "socialLinks": {
+        "twitter": "https://twitter.com/ilyass_trh",
+        "github": "https://github.com/ilyasstrh",
+        "linkedin": "https://www.linkedin.com/in/ilyasstrh/"
+      }
+    },
+    "menuItems": [
+      { "to": "hero", "label": "Home" },
+      { "to": "hero", "label": "About me" },
+      { "to": "experience", "label": "Experience" },
+      { "to": "education", "label": "Education" },
+      { "to": "skills", "label": "Skills" },
+      { "to": "projects", "label": "Projects" },
+      { "to": "certifications", "label": "Certifications" },
+      { "to": "blog", "label": "Blog" },
+      { "to": "contact-me", "label": "Contact" }
+    ],
+    "skills": [
+      { "name": "Java" },
+      { "name": "Python" },
+      { "name": "Javascript" },
+      { "name": "PHP" },
+      { "name": "NodeJS" },
+      { "name": "ReactJS" },
+      { "name": "Networking" },
+      { "name": "Spring Boot" },
+      { "name": "MongoDB" },
+      { "name": "MySQL" },
+      { "name": "Android" },
+      { "name": "UX/UI" },
+      { "name": "Bootstrap" },
+      { "name": "DevOps" }
+    ],
+    "experience": [
+      {
+        "company": "Adria Business & Technology",
+        "title": "DevOps Engineer",
+        "period": "Oct 2021 - Present",
+        "link": "#"
+      },
+      {
+        "company": "Oracle",
+        "title": "Research assistant, DevOps Engineer",
+        "period": "Feb 2021 - Aug 2021",
+        "link": "#"
+      }
+    ],
+    "education": [
+      {
+        "institution": "High National School for Computer Science and Systems Analysis - ENSIAS",
+        "degree": "Master 2, Internet Of Things: Software and Analytics",
+        "period": "2019 - 2021",
+        "link": "#"
+      },
+      {
+        "institution": "Faculty of Sciences Rabat - FSR",
+        "degree": "Bachelor's degree: Networks and Telecommunications",
+        "period": "2018 - 2019",
+        "link": "#"
+      }
+    ],
+    "projectsSection": {
+      "title": "Projects"
+    },
+    "projectTags": ["all", "Javascript", "ReactJS", "UI/UX", "Java", "NodeJS", "Firebase", "MongoDB", "Spring boot"],
+    "projects": [
+      {
+        "title": "MIOLA PFE",
+        "stack": "Full Stack Spring/ReactJS",
+        "image": "PFE",
+        "category": ["all", "Java EE", "Spring boot", "Spring Security", "ReactJS", "PostgreSQL", "Git"],
+        "description": "Une plateforme de faire le suivi, l'accompagnement et l'encadrement des etudiants pendant leurs stages de PFE.",
+        "link": "https://miolapfe.herokuapp.com"
+      },
+      {
+        "title": "React Portfolio",
+        "stack": "ReactJS",
+        "image": "Portfolio",
+        "category": ["all", "ReactJS"],
+        "description": "Une plateforme de faire le suivi, l'accompagnement et l'encadrement des etudiants pendant leurs stages de PFE.",
+        "link": "https://github.com/ilyasstrh/React_Portfolio"
+      },
+      {
+        "title": "Food delivery system",
+        "stack": "JAVA Desktop",
+        "image": "Food",
+        "category": ["all", "Java", "JavaFX", "Maven", "Git"],
+        "description": "The main purpose of our application is to allow users to minimize travel time to restaurants and enjoy their home food in a short time by viewing the progress of their order, thus facilitating the task of order management for restaurants, thus offering an optimal path for deliveries, with several IoT-based functionalities.",
+        "link": "https://github.com/ilyasstrh/FOOD_SYSTEM"
+      },
+      {
+        "title": "Healthcare Mobile App",
+        "stack": "Android",
+        "image": "Healthcare",
+        "category": ["all", "Android", "Gradle", "Firebase", "Firestore", "Git", "UI/UX"],
+        "description": "A mobile application that facilitates making appointments and monitoring patients",
+        "link": "https://github.com/ilyasstrh/Health_Care_App"
+      },
+      {
+        "title": "Online Store",
+        "stack": "MongoDB/Express/ReactJS/NodeJS",
+        "image": "OnlineShop",
+        "category": ["all", "ReactJS", "NodeJS", "MongoDB", "Express", "Mongoose", "UI/UX"],
+        "description": "An online car rental and management platform",
+        "link": "https://github.com/ilyasstrh/OnlineStore"
+      },
+      {
+        "title": "Car rental management",
+        "stack": "PHP/MySQL",
+        "image": "Locar",
+        "category": ["all", "PHP", "Javascript", "HTML", "CSS", "MySQL"],
+        "description": "An online car rental and management platform"
+      },
+      {
+        "title": "IoT Smart City Prototype",
+        "stack": "Arduino/ESP8266",
+        "image": "smartCity",
+        "category": ["all","Javascript", "HTML", "CSS"],
+        "description": "IoT Smart City Prototype",
+        "link": "SmartCityPDF"
+      }
+    ],
+    "certifications": [
+      {
+        "name": "Certified Kubernetes Administrator",
+        "link": "https://www.credly.com/badges/97af293c-ecad-46b1-bf23-99f7d9446a0d/public_url"
+      },
+      {
+        "name": "AWS Certified Solutions Architect",
+        "link": "https://www.credly.com/badges/24a9cc00-1aa9-46f9-ad1d-6a3b1168bcbb/public_url"
+      },
+      {
+        "name": "AWS Certified Cloud Practitioner",
+        "link": "https://www.credly.com/badges/4d602eaf-0e6b-48b9-a56d-f34b64fc13f9/public_url"
+      },
+      {
+        "name": "GitLab Certified Associate",
+        "link": "https://gitlab.badgr.com/public/assertions/DJAdw2NqSEaCAro-fP1uWA"
+      }
+    ],
+    "contactInfo": {
+      "description": "If you have got a project in mind, or an opportunity, feel free to contact me!",
+      "phone": "+212 (0) 6 54 17 35 53",
+      "email": "contact@ilyasstrh.tech",
+      "location": "Rabat, Morocco"
+    }
+  }

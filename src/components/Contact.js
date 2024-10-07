@@ -3,12 +3,14 @@ import '../App.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReCAPTCHA from "react-google-recaptcha";
-
+import portfolioData from '../portfolioData.json';
 
 function Contact() {
+    const { contactInfo } = portfolioData;
     const [form, setForm] = useState({});
     const reCaptcha = useRef();
     const [token, setToken] = useState("");
+
     const notifySuccess = () => {
         toast.success('Message sent successfully, Thanks!', {
             position: "top-center",
@@ -20,6 +22,7 @@ function Contact() {
             progress: undefined,
         });
     };
+
     const notifyError = () => {
         toast.error('Ooops! There was an error', {
             position: "top-center",
@@ -31,6 +34,7 @@ function Contact() {
             progress: undefined,
         });
     };
+
     const updateForm = e => {
         setForm({
             ...form,
@@ -65,7 +69,6 @@ function Contact() {
                 console.log("success");
                 reCaptcha.current.reset();
                 setToken("");
-
             } else {
                 notifyError();
                 console.log("error");
@@ -86,20 +89,19 @@ function Contact() {
             <div className="contact">
                 <div style={{ textAlign: "center" }} className="contact-details">
                     <h2 style={{ color: "#1e1e1e" }}>Contact me</h2>
-                    <p style={{ color: "#1e1e1e" }}>If you have got a project in mind,  or an opportunity, feel free to contact me!</p>
+                    <p style={{ color: "#1e1e1e" }}>{contactInfo.description}</p>
                     <ul className="contact-infos" style={{ color: "#1e1e1e" }}>
                         <li className="contact-details">
                             <i className="fa fa-phone"></i>
-                                  <span>  +212 (0) 6 54 17 35 53</span>
+                            <span>{contactInfo.phone}</span>
                         </li>
                         <li className="contact-details">
                             <i className="fa fa-envelope"></i>
-                            <span>  contact@ilyasstrh.tech</span>
-                                  
+                            <span>{contactInfo.email}</span>
                         </li>
                         <li className="contact-details">
                             <i className="fa fa-map-marker"></i>
-                            <span>  Rabat, Morocco</span>
+                            <span>{contactInfo.location}</span>
                         </li>
                     </ul>
                 </div>
@@ -128,7 +130,6 @@ function Contact() {
                 </div>
             </div>
         </section>
-
     );
 }
 

@@ -1,9 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../App.css';
 import { Link } from 'react-scroll'
 import Typed from "react-typed";
+import portfolioData from '../portfolioData.json';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PDFResume from './PDFResume';
 
 function Hero() {
+    const { personalInfo } = portfolioData;
+    const [showResume, setShowResume] = useState(false);
+
+    const handleGenerateCV = () => {
+        setShowResume(true);
+    };
+
+    const CVButton = () => {
+        if (personalInfo.cvLink) {
+            return (
+                <a href={personalInfo.cvLink} target="_blank" rel="noopener noreferrer" id="download" className="btn hero-btn">
+                    Download CV
+                </a>
+            );
+        } else if (showResume) {
+            return (
+                <PDFDownloadLink 
+                    document={<PDFResume />} 
+                    fileName="resume.pdf"
+                    className="btn hero-btn"
+                >
+                    {({ blob, url, loading, error }) =>
+                        loading ? 'Generating PDF...' : 'Download PDF'
+                    }
+                </PDFDownloadLink>
+            );
+        } else {
+            return (
+                <button onClick={handleGenerateCV} className="btn hero-btn">
+                    Generate CV
+                </button>
+            );
+        }
+    };
+
     return (
         <section id="hero" className="container">
             <div className="row">
@@ -11,32 +49,23 @@ function Hero() {
                     <div className="card-header">
                         <div className="profile-img"></div>
                         <div className="header-description">
-                            <h1>Ilyass TARHRI</h1>
-                            <Typed className={"descriptionTyped"} strings={["Full Stack Web Developer", "Cloud and DevOps Enthusiast", "UI/UX Designer"]} typeSpeed={40} backSpeed={50}
-                                loop />
+                            <h1>{personalInfo.name}</h1>
+                            <Typed className={"descriptionTyped"} strings={personalInfo.titles} typeSpeed={40} backSpeed={50} loop />
                             <div className="social-icons">
-                                <span>
-                                    <a href="https://twitter.com/ilyass_trh" target="_blank" rel="noopener noreferrer"><i className="fa fa-twitter"></i></a>
-                                </span>
-                                <span>
-                                    <a href="https://github.com/ilyasstrh" target="_blank" rel="noopener noreferrer"><i className="fa fa-github"></i></a>
-                                </span>
-                                <span>
-                                    <a href="https://www.linkedin.com/in/ilyasstrh/" target="_blank" rel="noopener noreferrer"><i
-                                        className="fa fa-linkedin"></i></a>
-                                </span>
+                                {Object.entries(personalInfo.socialLinks).map(([platform, link]) => (
+                                    <span key={platform}>
+                                        <a href={link} target="_blank" rel="noopener noreferrer">
+                                            <i className={`fa fa-${platform}`}></i>
+                                        </a>
+                                    </span>
+                                ))}
                             </div>
                         </div>
                     </div>
                     <div className="card-body">
                         <h2 className="card-title">About me</h2>
-                        <p className="card-text">
-                            Hello 👋🏼, I am Ilyass, Full-Stack Web Developer, based in Morocco, 
-                            I am passionate about Web Development, DevOps and Cloud. 
-                            I focus on modern, responsive website solutions that are easy to use by the end user. 
-                            If you have an opportunity, feel free to contact me.
-                        </p>
-                        <a href="https://drive.google.com/file/d/1t0OMlmOlYm_aJHREWc-71SO2KZp2Fu_9/view?usp=sharing" target="_blank" rel="noopener noreferrer" id="download" className="btn hero-btn">Download CV</a>
+                        <p className="card-text">{personalInfo.description}</p>
+                        <CVButton />
                         <Link to="projects" spy={true} smooth={true} className="btn hero-btn">My Projects</Link>
                     </div>
                 </div>

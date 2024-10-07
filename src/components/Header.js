@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import "../styles/Header.css";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
-import logo from '../images/logo.png'
+import portfolioData from '../portfolioData.json';
 
 export default function Header() {
     const [isNavVisible, setNavVisibility] = useState(false);
     const [isSmallScreen, setIsSmallScreen] = useState(false);
+    const { menuItems } = portfolioData;
 
     useEffect(() => {
         const mediaQuery = window.matchMedia("(max-width: 700px)");
@@ -39,15 +40,19 @@ export default function Header() {
                 unmountOnExit
             >
                 <nav className="Nav">
-                    <Link activeClass="active" to="hero" onClick={toggleNav} spy={true} smooth={true} className="menu-link">Home</Link>
-                    <Link to="hero" spy={true} smooth={true} onClick={toggleNav} className="menu-link">About me</Link>
-                    <Link to="experience" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Experience</Link>
-                    <Link to="education" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Education</Link>
-                    <Link to="skills" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Skills</Link>
-                    <Link to="projects" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Projects</Link>
-                    <Link to="certifications" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Certifications</Link>
-                    <Link to="blog" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Blog</Link>
-                    <Link to="contact-me" spy={true} smooth={true} onClick={toggleNav} className="menu-link">Contact</Link>
+                    {menuItems.map((item, index) => (
+                        <Link 
+                            key={index}
+                            to={item.to} 
+                            spy={true} 
+                            smooth={true} 
+                            onClick={toggleNav} 
+                            className="menu-link"
+                            activeClass={item.to === "hero" ? "active" : ""}
+                        >
+                            {item.label}
+                        </Link>
+                    ))}
                 </nav>
             </CSSTransition>
             <button onClick={toggleNav} className="Burger">
