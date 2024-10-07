@@ -1,9 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from 'react';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Card, CardHeader, CardContent } from '../components/ui/card';
-const PortfolioGenerator = () => {
+import { Card, CardHeader, CardContent, CardTitle } from '../components/ui/card';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '../components/ui/tabs';
+import { Label } from '../components/ui/label';
+import { PlusCircle, MinusCircle, Upload } from 'lucide-react';
+import PDFResumeGenerator from './PDFResumeGenerator';
+const PortfolioDataGenerator = () => {
+  const fileInputRef = useRef(null);
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const json = JSON.parse(e.target.result);
+          // Update state with the loaded data
+          setPersonalInfo(json.personalInfo || {});
+          setSkills(json.skills || []);
+          setExperience(json.experience || []);
+          setEducation(json.education || []);
+          setProjects(json.projects || []);
+          setCertifications(json.certifications || []);
+          setContactInfo(json.contactInfo || {});
+        } catch (error) {
+          console.error("Error parsing JSON file:", error);
+          alert("Error parsing JSON file. Please make sure it's a valid portfolio-data.json file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
   const [personalInfo, setPersonalInfo] = useState({
     name: "",
     titles: [""],
@@ -16,7 +49,7 @@ const PortfolioGenerator = () => {
     },
   });
 
-  const [skills, setSkills] = useState([""]);
+  const [skills, setSkills] = useState([{ name: '' }]);
   const [experience, setExperience] = useState([
     { company: "", title: "", period: "", link: "" },
   ]);
@@ -121,431 +154,277 @@ const PortfolioGenerator = () => {
     document.body.removeChild(link);
   };
 
+  const renderSkillInputs = () => (
+    <div className="space-y-2">
+      {skills.map((skill, index) => (
+        <div key={index} className="flex items-center space-x-2">
+          <Input
+            placeholder="Skill name"
+            value={skill.name}
+            onChange={(e) => {
+              const newSkills = [...skills];
+              newSkills[index].name = e.target.value;
+              setSkills(newSkills);
+            }}
+            className="flex-grow"
+          />
+          <Button 
+            onClick={() => setSkills(skills.filter((_, i) => i !== index))}
+            variant="outline"
+            size="icon"
+          >
+            <MinusCircle className="h-4 w-4" />
+          </Button>
+        </div>
+      ))}
+      <Button 
+        onClick={() => setSkills([...skills, { name: '' }])}
+        variant="outline"
+        className="w-full"
+      >
+        <PlusCircle className="mr-2 h-4 w-4" /> Add Skill
+      </Button>
+    </div>
+  );
+
+  const renderInputField = (label, value, onChange, name, placeholder = '') => (
+    <div className="mb-4">
+      <Label htmlFor={name} className="block text-sm font-medium text-gray-700 mb-1">
+        {label}
+      </Label>
+      <Input
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        className="w-full"
+      />
+    </div>
+  );
+
+  const renderArrayInputs = (items, setItems, itemName, fields) => (
+    <div className="space-y-4">
+      {items.map((item, index) => (
+        <Card key={index} className="p-4">
+          <div className="flex justify-between items-center mb-2">
+            <h4 className="text-lg font-semibold">{itemName} {index + 1}</h4>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => removeArrayItem(setItems, index)}
+            >
+              <MinusCircle className="h-4 w-4" />
+            </Button>
+          </div>
+          {fields.map(field => (
+            <div key={field.name} className="mb-2">
+              <Label htmlFor={`${field.name}-${index}`} className="block text-sm font-medium text-gray-700 mb-1">
+                {field.label}
+              </Label>
+              <Input
+                id={`${field.name}-${index}`}
+                value={item[field.name]}
+                onChange={(e) => handleObjectArrayChange(setItems, index, field.name, e.target.value)}
+                placeholder={field.placeholder}
+                className="w-full"
+              />
+            </div>
+          ))}
+        </Card>
+      ))}
+      <Button
+        onClick={() => addArrayItem(setItems, fields.reduce((acc, field) => ({ ...acc, [field.name]: '' }), {}))}
+        className="w-full"
+      >
+        <PlusCircle className="mr-2 h-4 w-4" /> Add {itemName}
+      </Button>
+    </div>
+  );
+
   return (
     <div className="max-w-4xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">
-        Portfolio Information Generator
-      </h1>
+      <h1 className="text-3xl font-bold mb-6 text-center">Portfolio Data Generator</h1>
 
-      <Card className="mb-4">
-        <CardHeader>Personal Information</CardHeader>
-        <CardContent>
-          <Input
-            placeholder="Name"
-            value={personalInfo.name}
-            onChange={(e) => handlePersonalInfoChange(e)}
-            name="name"
-            className="mb-2"
-          />
-          <Textarea
-            placeholder="Description"
-            value={personalInfo.description}
-            onChange={(e) => handlePersonalInfoChange(e)}
-            name="description"
-            className="mb-2"
-          />
-          <Input
-            placeholder="CV Link"
-            value={personalInfo.cvLink}
-            onChange={(e) => handlePersonalInfoChange(e)}
-            name="cvLink"
-            className="mb-2"
-          />
-          <Input
-            placeholder="Twitter"
-            value={personalInfo.socialLinks.twitter}
-            onChange={(e) => handleSocialLinkChange(e)}
-            name="twitter"
-            className="mb-2"
-          />
-          <Input
-            placeholder="GitHub"
-            value={personalInfo.socialLinks.github}
-            onChange={(e) => handleSocialLinkChange(e)}
-            name="github"
-            className="mb-2"
-          />
-          <Input
-            placeholder="LinkedIn"
-            value={personalInfo.socialLinks.linkedin}
-            onChange={(e) => handleSocialLinkChange(e)}
-            name="linkedin"
-            className="mb-2"
-          />
-        </CardContent>
-      </Card>
+      <div className="mb-4">
+        <Button onClick={triggerFileInput} className="w-full">
+          <Upload className="mr-2 h-4 w-4" /> Upload Existing Data
+        </Button>
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileUpload}
+          accept=".json"
+          style={{ display: 'none' }}
+        />
+      </div>
+      
+      <Tabs defaultValue="personal" className="mb-6">
+        <TabsList className="grid w-full grid-cols-4">
+          <TabsTrigger value="personal">Personal</TabsTrigger>
+          <TabsTrigger value="experience">Experience</TabsTrigger>
+          <TabsTrigger value="projects">Projects</TabsTrigger>
+          <TabsTrigger value="other">Other</TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="personal">
+          <Card>
+            <CardHeader>
+              <CardTitle>Personal Information</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {renderInputField('Name', personalInfo.name, handlePersonalInfoChange, 'name', 'Your full name')}
+              {renderInputField('Titles (comma-separated)', personalInfo.titles.join(', '), 
+                (e) => setPersonalInfo(prev => ({ ...prev, titles: e.target.value.split(',').map(t => t.trim()) })), 
+                'titles', 'e.g. Full Stack Developer, UI/UX Designer')}
+              <div className="mb-4">
+                <Label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
+                  Description
+                </Label>
+                <Textarea
+                  id="description"
+                  name="description"
+                  value={personalInfo.description}
+                  onChange={handlePersonalInfoChange}
+                  placeholder="A brief description about yourself"
+                  className="w-full"
+                  rows={4}
+                />
+              </div>
+              {renderInputField('CV Link', personalInfo.cvLink, handlePersonalInfoChange, 'cvLink', 'Link to your CV')}
+              
+              <h3 className="text-lg font-semibold mb-2">Social Links</h3>
+              {renderInputField('Twitter', personalInfo.socialLinks.twitter, handleSocialLinkChange, 'twitter', 'Your Twitter profile URL')}
+              {renderInputField('GitHub', personalInfo.socialLinks.github, handleSocialLinkChange, 'github', 'Your GitHub profile URL')}
+              {renderInputField('LinkedIn', personalInfo.socialLinks.linkedin, handleSocialLinkChange, 'linkedin', 'Your LinkedIn profile URL')}
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="experience">
+          <Card>
+            <CardHeader>
+              <CardTitle>Experience & Education</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <h3 className="text-lg font-semibold mb-2">Work Experience</h3>
+              {renderArrayInputs(experience, setExperience, 'Experience', [
+                { name: 'company', label: 'Company', placeholder: 'Company name' },
+                { name: 'title', label: 'Title', placeholder: 'Your job title' },
+                { name: 'period', label: 'Period', placeholder: 'e.g. Jan 2020 - Present' },
+                { name: 'link', label: 'Link', placeholder: 'Company website or related link' }
+              ])}
+              
+              <h3 className="text-lg font-semibold mb-2 mt-6">Education</h3>
+              {renderArrayInputs(education, setEducation, 'Education', [
+                { name: 'institution', label: 'Institution', placeholder: 'School/University name' },
+                { name: 'degree', label: 'Degree', placeholder: 'Degree obtained' },
+                { name: 'period', label: 'Period', placeholder: 'e.g. 2016 - 2020' },
+                { name: 'link', label: 'Link', placeholder: 'Institution website or related link' }
+              ])}
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="projects">
+          <Card>
+            <CardHeader>
+              <CardTitle>Projects</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {renderArrayInputs(projects, setProjects, 'Project', [
+                { name: 'title', label: 'Title', placeholder: 'Project title' },
+                { name: 'stack', label: 'Stack', placeholder: 'Technologies used' },
+                { name: 'image', label: 'Image', placeholder: 'Image URL or filename' },
+                { name: 'category', label: 'Category', placeholder: 'Project categories (comma-separated)' },
+                { name: 'description', label: 'Description', placeholder: 'Brief project description' },
+                { name: 'link', label: 'Link', placeholder: 'Project URL or repository link' }
+              ])}
+            </CardContent>
+          </Card>
+        </TabsContent>
 
-      <Card className="mb-4">
-        <CardHeader>Skills</CardHeader>
-        <CardContent>
-          {skills.map((skill, index) => (
-            <div key={index} className="flex mb-2">
-              <Input
-                placeholder="Skill"
-                value={skill}
-                onChange={(e) =>
-                  handleArrayChange(setSkills, index, e.target.value)
-                }
-                className="mr-2"
-              />
-              <Button onClick={() => removeArrayItem(setSkills, index)}>
-                Remove
-              </Button>
-            </div>
-          ))}
-          <Button onClick={() => addArrayItem(setSkills, "")}>Add Skill</Button>
-        </CardContent>
-      </Card>
+        <TabsContent value="skills">
+          <Card>
+            <CardHeader>
+              <CardTitle>Skills</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {renderSkillInputs()}
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="other">
+          <Card>
+            <CardHeader>
+              <CardTitle>Skills & Certifications</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <h3 className="text-lg font-semibold mb-2">Skills</h3>
+              {renderArrayInputs(skills, setSkills, 'Skill', [
+                { name: 'name', label: 'Skill Name', placeholder: 'e.g. JavaScript, Python, React' }
+              ])}
+              
+              <h3 className="text-lg font-semibold mb-2 mt-6">Certifications</h3>
+              {renderArrayInputs(certifications, setCertifications, 'Certification', [
+                { name: 'name', label: 'Certification Name', placeholder: 'e.g. AWS Certified Developer' },
+                { name: 'link', label: 'Certification Link', placeholder: 'Link to credential or certificate' }
+              ])}
+              
+              <h3 className="text-lg font-semibold mb-2 mt-6">Contact Information</h3>
+              <div className="mb-4">
+                <Label htmlFor="contactDescription" className="block text-sm font-medium text-gray-700 mb-1">
+                  Contact Description
+                </Label>
+                <Textarea
+                  id="contactDescription"
+                  value={contactInfo.description}
+                  onChange={(e) => setContactInfo(prev => ({ ...prev, description: e.target.value }))}
+                  placeholder="Brief message for potential contacts"
+                  className="w-full"
+                  rows={3}
+                />
+              </div>
+              {renderInputField('Phone', contactInfo.phone, (e) => setContactInfo(prev => ({ ...prev, phone: e.target.value })), 'phone', 'Your contact number')}
+              {renderInputField('Email', contactInfo.email, (e) => setContactInfo(prev => ({ ...prev, email: e.target.value })), 'email', 'Your email address')}
+              {renderInputField('Location', contactInfo.location, (e) => setContactInfo(prev => ({ ...prev, location: e.target.value })), 'location', 'Your location')}
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
 
-      <Card className="mb-4">
-        <CardHeader>Experience</CardHeader>
-        <CardContent>
-          {experience.map((exp, index) => (
-            <div key={index} className="mb-4 p-2 border rounded">
-              <Input
-                placeholder="Company"
-                value={exp.company}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setExperience,
-                    index,
-                    "company",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Title"
-                value={exp.title}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setExperience,
-                    index,
-                    "title",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Period"
-                value={exp.period}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setExperience,
-                    index,
-                    "period",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Link"
-                value={exp.link}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setExperience,
-                    index,
-                    "link",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Button onClick={() => removeArrayItem(setExperience, index)}>
-                Remove Experience
-              </Button>
-            </div>
-          ))}
-          <Button
-            onClick={() =>
-              addArrayItem(setExperience, {
-                company: "",
-                title: "",
-                period: "",
-                link: "",
-              })
-            }
-          >
-            Add Experience
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card className="mb-4">
-        <CardHeader>Education</CardHeader>
-        <CardContent>
-          {education.map((edu, index) => (
-            <div key={index} className="mb-4 p-2 border rounded">
-              <Input
-                placeholder="Institution"
-                value={edu.institution}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setEducation,
-                    index,
-                    "institution",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Degree"
-                value={edu.degree}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setEducation,
-                    index,
-                    "degree",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Period"
-                value={edu.period}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setEducation,
-                    index,
-                    "period",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Link"
-                value={edu.link}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setEducation,
-                    index,
-                    "link",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Button onClick={() => removeArrayItem(setEducation, index)}>
-                Remove Education
-              </Button>
-            </div>
-          ))}
-          <Button
-            onClick={() =>
-              addArrayItem(setEducation, {
-                institution: "",
-                degree: "",
-                period: "",
-                link: "",
-              })
-            }
-          >
-            Add Education
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card className="mb-4">
-        <CardHeader>Projects</CardHeader>
-        <CardContent>
-          {projects.map((project, index) => (
-            <div key={index} className="mb-4 p-2 border rounded">
-              <Input
-                placeholder="Title"
-                value={project.title}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setProjects,
-                    index,
-                    "title",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Stack"
-                value={project.stack}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setProjects,
-                    index,
-                    "stack",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Image"
-                value={project.image}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setProjects,
-                    index,
-                    "image",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Category (comma-separated)"
-                value={project.category.join(", ")}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setProjects,
-                    index,
-                    "category",
-                    e.target.value.split(", ")
-                  )
-                }
-                className="mb-2"
-              />
-              <Textarea
-                placeholder="Description"
-                value={project.description}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setProjects,
-                    index,
-                    "description",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Input
-                placeholder="Link"
-                value={project.link}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setProjects,
-                    index,
-                    "link",
-                    e.target.value
-                  )
-                }
-                className="mb-2"
-              />
-              <Button onClick={() => removeArrayItem(setProjects, index)}>
-                Remove Project
-              </Button>
-            </div>
-          ))}
-          <Button
-            onClick={() =>
-              addArrayItem(setProjects, {
-                title: "",
-                stack: "",
-                image: "",
-                category: [""],
-                description: "",
-                link: "",
-              })
-            }
-          >
-            Add Project
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card className="mb-4">
-        <CardHeader>Certifications</CardHeader>
-        <CardContent>
-          {certifications.map((cert, index) => (
-            <div key={index} className="mb-2 flex">
-              <Input
-                placeholder="Certification Name"
-                value={cert.name}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setCertifications,
-                    index,
-                    "name",
-                    e.target.value
-                  )
-                }
-                className="mr-2"
-              />
-              <Input
-                placeholder="Certification Link"
-                value={cert.link}
-                onChange={(e) =>
-                  handleObjectArrayChange(
-                    setCertifications,
-                    index,
-                    "link",
-                    e.target.value
-                  )
-                }
-                className="mr-2"
-              />
-              <Button onClick={() => removeArrayItem(setCertifications, index)}>
-                Remove
-              </Button>
-            </div>
-          ))}
-          <Button
-            onClick={() =>
-              addArrayItem(setCertifications, { name: "", link: "" })
-            }
-          >
-            Add Certification
-          </Button>
-        </CardContent>
-      </Card>
-
-      <Card className="mb-4">
-        <CardHeader>Contact Information</CardHeader>
-        <CardContent>
-          <Textarea
-            placeholder="Description"
-            value={contactInfo.description}
-            onChange={(e) =>
-              setContactInfo((prev) => ({
-                ...prev,
-                description: e.target.value,
-              }))
-            }
-            className="mb-2"
+      <div className="mt-4 flex space-x-4">
+        <Button onClick={generateJSON} className="w-full">Generate JSON</Button>
+        <PDFResumeGenerator 
+            data={{
+              personalInfo,
+              skills,
+              experience,
+              education,
+              projects,
+              certifications,
+              contactInfo
+            }}
           />
-          <Input
-            placeholder="Phone"
-            value={contactInfo.phone}
-            onChange={(e) =>
-              setContactInfo((prev) => ({ ...prev, phone: e.target.value }))
-            }
-            className="mb-2"
-          />
-          <Input
-            placeholder="Email"
-            value={contactInfo.email}
-            onChange={(e) =>
-              setContactInfo((prev) => ({ ...prev, email: e.target.value }))
-            }
-            className="mb-2"
-          />
-          <Input
-            placeholder="Location"
-            value={contactInfo.location}
-            onChange={(e) =>
-              setContactInfo((prev) => ({ ...prev, location: e.target.value }))
-            }
-            className="mb-2"
-          />
-        </CardContent>
-      </Card>
+      </div>
 
-      <Button onClick={generateJSON}>Generate JSON</Button>
+      
+
+      <div className="mt-8 p-4 bg-gray-100 rounded-lg">
+        <h2 className="text-xl font-bold mb-2">Instructions</h2>
+        <ol className="list-decimal list-inside space-y-2">
+          <li>Upload an existing portfolio-data.json file to update it, or start filling out the form from scratch.</li>
+          <li>Fill out or update the form with your portfolio information.</li>
+          <li>Click the "Generate JSON" button to download your updated portfolio-data.json file.</li>
+          <li>Click the "Generate PDF Resume" button to create a PDF version of your resume.</li>
+          <li>Replace the existing portfolio-data.json file in your forked repository with your newly generated file.</li>
+          <li>Commit and push the changes to your repository.</li>
+          <li>Deploy your updated portfolio using Netlify or your preferred hosting service.</li>
+        </ol>
+      </div>
     </div>
   );
 };
 
-export default PortfolioGenerator;
+export default PortfolioDataGenerator;
