@@ -12,6 +12,7 @@ function Experience() {
                         <a href="https://www.jpmorgan.com/" className="float-right">Sep 2022 - Present</a>
                         <p>
                             Senior Software Engineer, Full Stack Developer 
+                            <br/>
                             Member of a private banking and wealth management engineering team responsible for designing, developing, and delivering a secure, high-performance UI platform supporting investment management and advisory solutions for ultra-high-net-worth (23 Wall) global advisors.
                         </p>
                     </li>

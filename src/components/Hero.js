@@ -28,10 +28,10 @@ function Hero() {
                     <div className="card-body">
                         <h2 className="card-title">About me</h2>
                         <p className="card-text">
-                        Hello 👋🏼, I am Ashwini, Full-Stack Web Developer, based in USA, 
-                        I am passionate about Web Development, DevOps and Cloud. 
-                        I focus on modern, responsive website solutions that are easy to use by the end user. 
-                        If you have an opportunity, feel free to contact me.
+                        Hi 👋🏼, I'm Ashwini — a Senior Full-Stack Developer based in the U.S., with 14+ years building scalable, 
+                        high-performance web applications for the financial services industry. 
+                        <br/>I specialize in React, TypeScript, and Java/Spring Boot on the backend, with growing focus on cloud-native architecture.I care about building software that's not just functional, but genuinely easy and intuitive for the people using it.
+                        <br/>Open to new opportunities feel free to reach out.
                              
                     </p>
                         <a href="https://drive.google.com/file/d/10W6kZZT-uEGUc2KP-TLj_wCE43X0WyP2/view?usp=drive_link" target="_blank" rel="noreferrer" id="download" className="btn  hero-btn">Download CV</a>
