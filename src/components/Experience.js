@@ -8,18 +8,38 @@ function Experience() {
                 <h2>Experience</h2>
                 <ul className="timeline">
                     <li>
-                        <a target="_blank" href="#">Adria Business & Technology</a>
-                        <a href="#" className="float-right">Oct 2021 - Present</a>
+                        <a target="_blank" href="#">JP MORGAN CHASE</a>
+                        <a href="#" className="float-right">Sep 2022 - Present</a>
                         <p>
-                            DevOps Engineer
-                    </p>
+                            Senior Software Engineer, Full Stack Developer
+                        </p>
                     </li>
                     <li>
-                        <a href="#">Oracle</a>
-                        <a href="#" className="float-right">Feb 2021 - Aug 2021</a>
+                        <a href="#">CONSULTANT - Front End Developer</a>
+                        <a href="#" className="float-right">Feb 2021- Sep 2022</a>
                         <p>
-                            Research assistant, DevOps Engineer
-                    </p>
+                            Waters Corporation – Boston, MA
+                        </p>
+                        <p>
+                            Bank of America – Charlotte, NC
+                        </p>
+                        <p>
+                            Wells Fargo – Summit, NJ
+                        </p>
+                    </li>
+                    <li>
+                        <a href="#">COGNIZANT TECHNOLOGY SERVICES</a>
+                        <a href="#" className="float-right">Sept 2018 - Feb 2021</a>
+                        <p>
+                            
+                        </p>
+                    </li>
+                    <li>
+                        <a href="#">INFOSYS</a>
+                        <a href="#" className="float-right">Sep 2016 - Aug 2018</a>
+                        <p>
+                            Tech Associate Developer	
+                        </p>
                     </li>
                 </ul>
             </div>

@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ReCAPTCHA from "react-google-recaptcha";
 
-
 function Contact() {
     const [form, setForm] = useState({});
     const reCaptcha = useRef();
@@ -86,20 +85,20 @@ function Contact() {
             <div className="contact">
                 <div style={{ textAlign: "center" }} className="contact-details">
                     <h2 style={{ color: "#1e1e1e" }}>Contact me</h2>
-                    <p style={{ color: "#1e1e1e" }}>If you have got a project in mind,  or an opportunity, feel free to contact me!</p>
+                    <p style={{ color: "#1e1e1e" }}>If you have got an opportunity, feel free to contact me!</p>
                     <ul className="contact-infos" style={{ color: "#1e1e1e" }}>
                         <li className="contact-details">
                             <i className="fa fa-phone"></i>
-                                  <span>  +212 (0) 6 54 17 35 53</span>
+                                  <span>  +1 (972) 7 30 64 56</span>
                         </li>
                         <li className="contact-details">
                             <i className="fa fa-envelope"></i>
-                            <span>  contact@ilyasstrh.tech</span>
+                            <span> Ash.d1809@gmail.com</span>
                                   
                         </li>
                         <li className="contact-details">
                             <i className="fa fa-map-marker"></i>
-                            <span>  Rabat, Morocco</span>
+                            <span>New Jersey, USA</span>
                         </li>
                     </ul>
                 </div>
@@ -128,7 +127,6 @@ function Contact() {
                 </div>
             </div>
         </section>
-
     );
 }
 

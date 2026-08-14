@@ -1,78 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/Gallery.scss';
-import Healthcare from '../images/Portfolio/App_ui.png'
-import OnlineShop from '../images/Portfolio/onlineshop.jpg'
 import Food from '../images/Portfolio/food.jpg'
-import smartCity from '../images/Portfolio/smartCity.jpg'
 import Portfolio from '../images/Portfolio/portfolio.PNG'
-import PFE from '../images/Portfolio/pfe.PNG'
-import Locar from '../images/Portfolio/locar.PNG'
-import SmartCityPDF from '../files/SmartCity.pdf'
-
 
 function Gallery() {
     const [filter, setFilter] = useState('all');
     const [projects, setProjects] = useState([]);
     const [hover, setHover] = useState(false);
-    const tags = ['all', 'Javascript', "ReactJS", "UI/UX", "Java", "NodeJS", "Firebase", "MongoDB", "Spring boot"];
+    const tags = ['all', 'Javascript', "ReactJS", "Angular", "UI/UX", "Java", "NodeJS"];
     /**
      * Add portfolio project here
      */
     const portfolio = [
         {
-            title: "MIOLA PFE",
-            stack: "Full Stack Spring/ReactJS",
-            image: PFE,
-            category: ['all', 'Java EE', 'Spring boot', 'Spring Security', 'ReactJS', 'PostgreSQL', 'Git'],
-            description: "Une plateforme de faire le suivi, l'accompagnement et l'encadrement des etudiants pendant leurs stages de PFE.",
-            link: 'https://miolapfe.herokuapp.com ',
-        },
-        {
             title: "React Portfolio",
             stack: "ReactJS",
             image: Portfolio,
-            category: ['all', 'ReactJS'],
-            description: "Une plateforme de faire le suivi, l'accompagnement et l'encadrement des etudiants pendant leurs stages de PFE.",
-            link: 'https://github.com/ilyasstrh/React_Portfolio',
+            category: ['all', 'ReactJS', 'web-vitals', 'react-scroll', 'react-toastify', 'react-transition-group', 'react-tsparticles', 'sass'],
+            description: "This is my personal portfolio website built using ReactJS. It showcases my skills, projects, and experience as a Full Stack Web Developer. The website is designed to be responsive and user-friendly, providing visitors with an overview of my work and allowing them to get in touch with me.",
+            link: 'https://github.com/ashDhamankar/ash-dhamankar-portfolio',
         },
         {
-            title: 'Food delivery system',
-            stack: "JAVA Desktop",
+            title: 'Recipe Book',
+            stack: "Desktop",
             image: Food,
-            category: ['all', 'Java', 'JavaFX', 'Maven', 'Git'],
-            description: "The main purpose of our application is to allow users to minimize travel time to restaurants and enjoy their home food in a short time by viewing the progress of their order, thus facilitating the task of order management for restaurants, thus offering an optimal path for deliveries, with several IoT-based functionalities.",
-            link: 'https://github.com/ilyasstrh/FOOD_SYSTEM',
+            category: ['all', 'Java', 'ReactJs', 'Maven'],
+            description: "The main purpose of our application is to allow users to maintain the recipe book and to share their recipes with other users. Users can also search for recipes based on ingredients, cuisine, and dietary restrictions.",
+            link: 'https://github.com/AshDhamankar/tasty-shelf',
         },
         {
-            title: 'Healthcare Mobile App',
-            stack: "Android",
-            image: Healthcare,
+            title: 'Finance App',
+            stack: "Desktop",
             category: ['all', 'Android', 'Gradle', 'Firebase', 'Firestore', 'Git', 'UI/UX'],
-            description: "A mobile application that facilitates making appointments and monitoring patients",
-            link: 'https://github.com/ilyasstrh/Health_Care_App',
-        },
-        {
-            title: 'Online Store',
-            stack: "MongoDB/Express/ReactJS/NodeJS",
-            image: OnlineShop,
-            category: ['all', 'ReactJS', 'NodeJS', 'MongoDB', 'Express', 'Mongoose', 'UI/UX'],
-            description: "An online car rental and management platform",
-            link: 'https://github.com/ilyasstrh/OnlineStore',
-        },
-        {
-            title: 'Car rental management',
-            stack: "PHP/MySQL",
-            image: Locar,
-            category: ['all', 'PHP', 'Javascript', 'HTML', 'CSS', 'MySQL'],
-            description: "An online car rental and management platform",
-        },
-        {
-            title: 'IoT Smart City Prototype',
-            stack: "Arduino/ESP8266",
-            image: smartCity,
-            category: ['all','Javascript', 'HTML', 'CSS'],
-            description: "IoT Smart City Prototype",
-            link: SmartCityPDF,
+            description: "A mobile application that facilitates monitoring clients' financial transactions and provides a comprehensive overview of their financial status. The app allows users to track their income, expenses, and savings, as well as set financial goals and receive personalized recommendations for improving their financial health.",
         },
     ];
 
@@ -99,6 +59,9 @@ function Gallery() {
                 <button className="btn btn-project">
                     <a active={filter === 'ReactJS'} onClick={() => setFilter('ReactJS')}>ReactJS</a>
                 </button>
+                    <button className="btn btn-project">
+                    <a active={filter === 'Angular'} onClick={() => setFilter('Angular')}>Angular</a>
+                </button>
                 <button className="btn btn-project">
                     <a active={filter === 'UI/UX'} onClick={() => setFilter('UI/UX')}>UI/UX</a>
                 </button>
@@ -107,15 +70,6 @@ function Gallery() {
                 </button>
                 <button className="btn btn-project">
                     <a active={filter === 'NodeJS'} onClick={() => setFilter('NodeJS')}>NodeJS</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'Firebase'} onClick={() => setFilter('Firebase')}>Firebase</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'MongoDB'} onClick={() => setFilter('MongoDB')}>MongoDB</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'Spring boot'} onClick={() => setFilter('Spring boot')}>Spring boot</a>
                 </button>
             </div>
             <div class="image-grid">

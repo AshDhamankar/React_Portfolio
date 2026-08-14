@@ -1,9 +1,6 @@
 import React from 'react';
 import '../App.css';
 import AwsCP from '../images/certifs/aws_cp.png'
-import gitlab from '../images/certifs/gitlab.png'
-import k8sgcp from '../images/certifs/k8s_gcp.png'
-import k8s from '../images/certifs/k8s.png'
 import AWSSAA from '../images/certifs/saa.png'
 
 function Certifications() {
@@ -11,13 +8,6 @@ function Certifications() {
     /* add certifications here */
 
     const certifications = [
-       
-        {
-            link: "https://www.credly.com/badges/97af293c-ecad-46b1-bf23-99f7d9446a0d/public_url",
-            certImgSrc: k8s,
-            certImgAlt: "Certified Kubernetes Administrator",
-            certImgTitle: "Certified Kubernetes Administrator"
-        },
         {
             link: "https://www.credly.com/badges/24a9cc00-1aa9-46f9-ad1d-6a3b1168bcbb/public_url",
             certImgSrc: AWSSAA,
@@ -30,12 +20,6 @@ function Certifications() {
             certImgAlt: "AWS Certified Cloud Practitioner",
             certImgTitle: "AWS Certified Cloud Practitioner"
         },
-        {
-            link: "https://gitlab.badgr.com/public/assertions/DJAdw2NqSEaCAro-fP1uWA",
-            certImgSrc: gitlab,
-            certImgAlt: "GitLab Certified Associate",
-            certImgTitle: "GitLab Certified Associate"
-        }
     ]
 
     return (

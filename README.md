@@ -1,11 +1,5 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/d5713c1e-fc6c-4891-9463-8e16fdeaa564/deploy-status)](https://app.netlify.com/sites/ilyasstrh/deploys)
-
 # React Portfolio
-
 A personal portfolio website made with ReactJS.
-
-## Live version
-[https://ilyasstrh.netlify.app/](https://ilyasstrh.netlify.app/)
 
 ## Getting started
 
@@ -33,6 +27,5 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### Deployment
-
 Check the main.yml under .github/workflows directory.
 Add NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID as **secrets** in your github repository secrets.

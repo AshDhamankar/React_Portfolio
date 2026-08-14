@@ -9,8 +9,8 @@ import Header from './components/Header.js';
 import Projects from './components/Projects';
 import Skills from './components/Skills';
 import ScrollToTop from './components/ScrollToTop';
-import Particles from 'react-particles-js';
-import { ToastContainer, toast } from 'react-toastify';
+import Particles from 'react-tsparticles';
+import { ToastContainer } from 'react-toastify';
 import Certifications from './components/Certifications';
 
 
@@ -21,21 +21,26 @@ function App() {
         <ScrollToTop />
         <Header />
         <Particles
+          id="tsparticles"
           style={{
             position: 'absolute',
-            opacity: "0.3",
+            opacity: 0.3,
+            inset: 0,
+            pointerEvents: 'none',
+            zIndex: 0,
           }}
-          params={{
+          options={{
+            fpsLimit: 60,
             particles: {
               number: {
                 value: 45,
                 density: {
                   enable: true,
-                  value_area: 850,
+                  area: 850,
                 },
               },
               shape: {
-                type: "circle",
+                type: 'circle',
                 stroke: {
                   width: 1,
                 },
@@ -43,20 +48,20 @@ function App() {
               size: {
                 value: 5,
                 random: true,
-                anim: {
+                animation: {
                   enable: true,
                   speed: 4,
-                  size_min: 0.1,
+                  minimumValue: 0.1,
                   sync: true,
                 },
               },
               opacity: {
                 value: 1,
                 random: true,
-                anim: {
+                animation: {
                   enable: true,
                   speed: 1,
-                  opacity_min: 0.3,
+                  minimumValue: 0.3,
                   sync: true,
                 },
               },
