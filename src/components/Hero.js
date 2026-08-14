@@ -16,10 +16,10 @@ function Hero() {
                                 loop />
                             <div className="social-icons">
                                 <span>
-                                    <a href="https://github.com/ashDhamankar" target="_"><i className="fa fa-github"></i></a>
+                                    <a href="https://github.com/ashDhamankar" target="_blank" rel="noreferrer"><i className="fa fa-github"></i></a>
                                 </span>
                                 <span>
-                                    <a href="https://www.linkedin.com/in/ashwini-dhamankar/" target="_"><i
+                                    <a href="https://www.linkedin.com/in/ashwini-dhamankar/" target="_blank" rel="noreferrer"><i
                                         className="fa fa-linkedin"></i></a>
                                 </span>
                             </div>
@@ -34,7 +34,7 @@ function Hero() {
                         If you have an opportunity, feel free to contact me.
                              
                     </p>
-                        <a href="https://drive.google.com/file/d/10W6kZZT-uEGUc2KP-TLj_wCE43X0WyP2/view?usp=drive_link" target="_blank" id="download" className="btn  hero-btn">Download CV</a>
+                        <a href="https://drive.google.com/file/d/10W6kZZT-uEGUc2KP-TLj_wCE43X0WyP2/view?usp=drive_link" target="_blank" rel="noreferrer" id="download" className="btn  hero-btn">Download CV</a>
                         <Link to="projects" spy={true} smooth={true} className="btn hero-btn">My Projects</Link>
                     </div>
                 </div>

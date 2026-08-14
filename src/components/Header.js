@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import "../styles/Header.css";
 import { CSSTransition } from "react-transition-group";
 import { Link } from 'react-scroll'
-import logo from '../images/logo.png'
 
 export default function Header() {
     const [isNavVisible, setNavVisibility] = useState(false);

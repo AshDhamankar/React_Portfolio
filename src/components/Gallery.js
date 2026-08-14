@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import '../styles/Gallery.scss';
 import Food from '../images/Portfolio/food.jpg'
 import Portfolio from '../images/Portfolio/portfolio.PNG'
@@ -7,11 +7,10 @@ function Gallery() {
     const [filter, setFilter] = useState('all');
     const [projects, setProjects] = useState([]);
     const [hover, setHover] = useState(false);
-    const tags = ['all', 'Javascript', "ReactJS", "Angular", "UI/UX", "Java", "NodeJS"];
     /**
      * Add portfolio project here
      */
-    const portfolio = [
+    const portfolio = useMemo(() => [
         {
             title: "React Portfolio",
             stack: "ReactJS",
@@ -34,56 +33,40 @@ function Gallery() {
             category: ['all', 'Android', 'Gradle', 'Firebase', 'Firestore', 'Git', 'UI/UX'],
             description: "A mobile application that facilitates monitoring clients' financial transactions and provides a comprehensive overview of their financial status. The app allows users to track their income, expenses, and savings, as well as set financial goals and receive personalized recommendations for improving their financial health.",
         },
-    ];
+    ], []);
 
     useEffect(() => {
         setProjects(portfolio);
-    }, []);
+    }, [portfolio]);
 
     useEffect(() => {
         setProjects([]);
         const filtered = portfolio.map(p => ({ ...p, filtered: p.category.includes(filter) }));
         setProjects(filtered);
-    }, [filter]);
+    }, [filter, portfolio]);
 
     return (
         <div>
             <div id="filter">
                 {/* Tags to filter projects */}
-                <button className="btn btn-project">
-                    <a active={filter === 'all'} onClick={() => setFilter('all')}>All</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'Javascript'} onClick={() => setFilter('Javascript')}>Javascript</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'ReactJS'} onClick={() => setFilter('ReactJS')}>ReactJS</a>
-                </button>
-                    <button className="btn btn-project">
-                    <a active={filter === 'Angular'} onClick={() => setFilter('Angular')}>Angular</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'UI/UX'} onClick={() => setFilter('UI/UX')}>UI/UX</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'Java'} onClick={() => setFilter('Java')}>Java</a>
-                </button>
-                <button className="btn btn-project">
-                    <a active={filter === 'NodeJS'} onClick={() => setFilter('NodeJS')}>NodeJS</a>
-                </button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('all')}>All</button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('Javascript')}>Javascript</button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('ReactJS')}>ReactJS</button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('Angular')}>Angular</button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('UI/UX')}>UI/UX</button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('Java')}>Java</button>
+                <button type="button" className="btn btn-project" onClick={() => setFilter('NodeJS')}>NodeJS</button>
             </div>
-            <div class="image-grid">
+            <div className="image-grid">
                 {projects.map(item => item.filtered === true ? (
                     <div className="box" key={item.title} >
                         <div className="grid-image">
-                            <img src={item.image} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} />
+                            <img src={item.image} alt={item.title} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} />
                         </div>
                         <div className={hover ? 'hidden' : 'display-content'}>
                             <h2>{item.title}</h2>
                             <p>{item.stack}</p>
-                            <button className="btn hero-btn title">
-                                <a id="title" href={item.link} target="_blank">Learn more</a>
-                            </button>
+                            <a id="title" href={item.link} target="_blank" rel="noreferrer" className="btn hero-btn title">Learn more</a>
                         </div>
                     </div>
                 ) : '')}
