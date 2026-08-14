@@ -11,7 +11,8 @@ function Experience() {
                         <a href="https://www.jpmorgan.com/" target="_blank" rel="noreferrer">JP MORGAN CHASE</a>
                         <a href="https://www.jpmorgan.com/" className="float-right">Sep 2022 - Present</a>
                         <p>
-                            Senior Software Engineer, Full Stack Developer
+                            Senior Software Engineer, Full Stack Developer 
+                            Member of a private banking and wealth management engineering team responsible for designing, developing, and delivering a secure, high-performance UI platform supporting investment management and advisory solutions for ultra-high-net-worth (23 Wall) global advisors.
                         </p>
                     </li>
                     <li>
@@ -28,17 +29,23 @@ function Experience() {
                         </p>
                     </li>
                     <li>
-                        <a href="https://www.cognizant.com/us/en">COGNIZANT TECHNOLOGY SERVICES</a>
+                        <a href="https://www.cognizant.com/us/en">COGNIZANT TECHNOLOGY SERVICES  - Senior UI Developer</a>
                         <a href="https://www.cognizant.com/us/en" className="float-right">Sept 2018 - Feb 2021</a>
                         <p>
-                            
+                            Bank of New York Mellon- Jersey City, NJ
+                        </p>
+                        <p>
+                            Credit Suisse- New York City, NJ
                         </p>
                     </li>
                     <li>
-                        <a href="https://www.infosys.com/">INFOSYS</a>
+                        <a href="https://www.infosys.com/">INFOSYS - Tech Associate Developer</a>
                         <a href="https://www.infosys.com/" className="float-right">Sep 2016 - Aug 2018</a>
                         <p>
-                            Tech Associate Developer	
+                            CVS SPRX (Health) – Dallas, Tx
+                        </p>
+                        <p>
+                            AT&T Telecommunications Services– Dallas, Tx
                         </p>
                     </li>
                 </ul>

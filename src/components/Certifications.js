@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.css';
 import AwsCP from '../images/certifs/aws_cp.png'
-import AWSSAA from '../images/certifs/saa.png'
+import AwsAICP from '../images/certifs/AwsAICP.jpg'
 
 function Certifications() {
 
@@ -9,13 +9,11 @@ function Certifications() {
 
     const certifications = [
         {
-            link: "https://www.credly.com/badges/24a9cc00-1aa9-46f9-ad1d-6a3b1168bcbb/public_url",
-            certImgSrc: AWSSAA,
-            certImgAlt: "AWS Certified Solutions Architect",
-            certImgTitle: "AWS Certified Solutions Architect"
+            certImgSrc: AwsAICP,
+            certImgAlt: "AWS Certified AI Practitioner",
+            certImgTitle: "AWS Certified AI Practitioner"
         },
         {
-            link: "https://www.credly.com/badges/4d602eaf-0e6b-48b9-a56d-f34b64fc13f9/public_url",
             certImgSrc: AwsCP,
             certImgAlt: "AWS Certified Cloud Practitioner",
             certImgTitle: "AWS Certified Cloud Practitioner"
