@@ -8,7 +8,7 @@ function Education() {
                 <h2>Education</h2>
                 <ul className="timeline">
                     <li>
-                        <a href="https://www.njit.edu/" className="float-right">2019 - 2021</a>
+                        <a href="https://www.njit.edu/" className="float-right">2019 - 2011</a>
                         <p>
                             Master in Business Administration (MBA) in Information Systems and Finance.
                         </p>

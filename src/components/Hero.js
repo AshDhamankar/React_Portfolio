@@ -28,7 +28,7 @@ function Hero() {
                     <div className="card-body">
                         <h2 className="card-title">About me</h2>
                         <p className="card-text">
-                        Hi 👋🏼, I'm Ashwini — a Senior Full-Stack Developer based in the U.S., with 14+ years building scalable, 
+                        Hi 👋🏼, I'm Ashwini — a Senior Full-Stack Developer based in the U.S., with 10+ years building scalable, 
                         high-performance web applications for the financial services industry. 
                         <br/>I specialize in React, TypeScript, and Java/Spring Boot on the backend, with growing focus on cloud-native architecture.I care about building software that's not just functional, but genuinely easy and intuitive for the people using it.
                         <br/>Open to new opportunities feel free to reach out.

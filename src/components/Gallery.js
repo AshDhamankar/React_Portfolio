@@ -17,7 +17,7 @@ function Gallery() {
             image: Portfolio,
             category: ['all', 'ReactJS', 'web-vitals', 'react-scroll', 'react-toastify', 'react-transition-group', 'react-tsparticles', 'sass'],
             description: "This is my personal portfolio website built using ReactJS. It showcases my skills, projects, and experience as a Full Stack Web Developer. The website is designed to be responsive and user-friendly, providing visitors with an overview of my work and allowing them to get in touch with me.",
-            link: 'https://github.com/ashDhamankar/ash-dhamankar-portfolio',
+            link: 'https://github.com/AshDhamankar/React_Portfolio',
         },
         {
             title: 'Recipe Book',
