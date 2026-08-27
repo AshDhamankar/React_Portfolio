@@ -34,7 +34,7 @@ function Hero() {
                         <br/>Open to new opportunities feel free to reach out.
                              
                     </p>
-                        <a href="https://drive.google.com/file/d/10W6kZZT-uEGUc2KP-TLj_wCE43X0WyP2/view?usp=drive_link" target="_blank" rel="noreferrer" id="download" className="btn  hero-btn">Download CV</a>
+                        <a href="https://drive.google.com/file/d/1wjp6rl34O9d407EZ75kpPbWzcywTF8xR/view?usp=drive_link" target="_blank" rel="noreferrer" id="download" className="btn  hero-btn">Download CV</a>
                         <Link to="projects" spy={true} smooth={true} className="btn hero-btn">My Projects</Link>
                     </div>
                 </div>
