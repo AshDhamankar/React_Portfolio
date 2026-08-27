@@ -98,7 +98,7 @@ function Contact() {
                         </li>
                         <li className="contact-details">
                             <i className="fa fa-map-marker"></i>
-                            <span>New Jersey, USA</span>
+                            <span>New Jersey, USA | Los Angeles, CA, USA</span>
                         </li>
                     </ul>
                 </div>
