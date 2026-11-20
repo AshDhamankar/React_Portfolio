@@ -17,7 +17,7 @@ function Experience() {
                         </p>
                     </li>
                     <li>
-                        <a href="https://www.waters.com/">CONSULTANT - Front End Developer</a>
+                        <a href="https://www.waters.com/"> Front End Developer</a>
                         <a href="https://www.waters.com/" className="float-right">Feb 2021- Sep 2022</a>
                         <p>
                             Waters Corporation – Boston, MA
