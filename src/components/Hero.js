@@ -12,7 +12,7 @@ function Hero() {
                         <div className="profile-img"></div>
                         <div className="header-description">
                             <h1>Ashwini Dhamankar</h1>
-                            <Typed className={"descriptionTyped"} strings={["Full Stack Web Developer", "Front End Developer", "Software Developer"]} typeSpeed={40} backSpeed={50}
+                            <Typed className={"descriptionTyped"} strings={["Full Stack Developer", "Front End Developer", "Software Developer", " Generative AI Developer"]} typeSpeed={40} backSpeed={50}
                                 loop />
                             <div className="social-icons">
                                 <span>
@@ -28,11 +28,10 @@ function Hero() {
                     <div className="card-body">
                         <h2 className="card-title">About me</h2>
                         <p className="card-text">
-                        Hi 👋🏼, I'm Ashwini — a Senior Full-Stack Developer based in the U.S., with 10+ years building scalable, 
-                        high-performance web applications for the financial services industry. 
-                        <br/>I specialize in React, TypeScript, and Java/Spring Boot on the backend, with growing focus on cloud-native architecture.I care about building software that's not just functional, but genuinely easy and intuitive for the people using it.
-                        <br/>Open to new opportunities feel free to reach out.
-                             
+                       Hi 👋🏼, I'm Ashwini — a Senior Full-Stack Developer and AWS Certified Generative AI Developer with 10+ years of experience building scalable, high-performance web applications for leading financial institutions, including JPMorgan Chase, BNY Mellon, Credit Suisse, Bank of America, and Wells Fargo.
+<br/>I specialize in React, Angular, TypeScript, and Java/Spring Boot, with deep experience in micro-frontend architecture, REST and GraphQL APIs, and cloud-native delivery on AWS. I also apply Generative AI and LLM-powered tooling across the development lifecycle to ship faster while meeting enterprise security and quality standards.
+<br/>I care about building software that is not only robust and accessible, but genuinely intuitive for the people who use it.
+<br/>Open to new opportunities. Feel free to reach out!
                     </p>
                         <a href="https://drive.google.com/file/d/1wjp6rl34O9d407EZ75kpPbWzcywTF8xR/view?usp=drive_link" target="_blank" rel="noreferrer" id="download" className="btn  hero-btn">Download CV</a>
                         <Link to="projects" spy={true} smooth={true} className="btn hero-btn">My Projects</Link>
